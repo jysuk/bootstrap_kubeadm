@@ -63,7 +63,8 @@ RUN --mount=type=cache,target=/root/.cache/go-build \
     -o manager ${package}
 
 # Production image
-FROM gcr.io/distroless/static:nonroot-${ARCH}
+#FROM gcr.io/distroless/static:nonroot-${ARCH}
+FROM gcr.io/distroless/static:latest
 WORKDIR /
 COPY --from=builder /workspace/manager .
 # Use uid of nonroot user (65532) because kubernetes expects numeric user when applying pod security policies
